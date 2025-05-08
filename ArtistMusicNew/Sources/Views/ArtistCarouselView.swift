@@ -2,9 +2,9 @@ import SwiftUI
 
 /// Swipe left / right to move through full-screen ArtistDetailView pages.
 struct ArtistCarouselView: View {
-
+    
     @EnvironmentObject private var store: ArtistStore     // all artists
-
+    
     var body: some View {
         TabView {
             ForEach(store.artists) { artist in
@@ -14,16 +14,11 @@ struct ArtistCarouselView: View {
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .ignoresSafeArea(edges: .top)                     // banner bleeds into status bar
-
-        // ───────── now-playing bar overlay
-        .overlay(
-            VStack {                                     // pushes bar to bottom
-                Spacer()
-                NowPlayingBar()
-            }
-        )
+        
     }
 }
+
+
 
 #if DEBUG
 #Preview {

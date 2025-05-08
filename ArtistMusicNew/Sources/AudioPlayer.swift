@@ -98,6 +98,19 @@ final class AudioPlayer: ObservableObject {
         isPlaying  = true
         startRotation()
     }
+    
+    // Add seeking functionality for the interactive progress bar
+    // Public method for seeking to a percentage position in the current track
+    // Public method for seeking to a percentage position in the current track
+    // Add seeking functionality for interactive progress bar
+    func seekToPercentage(_ percentage: Double) {
+        guard let duration = player.currentItem?.duration,
+              duration.seconds.isFinite, duration.seconds > 0 else { return }
+        
+        let time = CMTime(seconds: duration.seconds * percentage, preferredTimescale: 600)
+        print("Seeking to: \(percentage * 100)% (\(time.seconds) seconds)")
+        player.seek(to: time)
+    }
 
     // MARK: Simple transport ----------------------------------------------
     func play()    { player.play();  isPlaying = true;  startRotation() }
