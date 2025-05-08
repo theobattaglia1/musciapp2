@@ -1,0 +1,14 @@
+name: ArtistMusic
+options:
+  bundleIdPrefix: com.example            # change later in Signing & Capabilities
+  deploymentTarget: { iOS: "17.0" }
+targets:
+  ArtistMusic:
+    type: application
+    platform: iOS
+    sources: [Sources]
+    resources: [Resources]
+    settings:
+      INFO_PLIST_FILE: Sources/Info.plist
+      CODE_SIGN_ENTITLEMENTS: Sources/ArtistMusic.entitlements
+schemes: { ArtistMusic: {} }

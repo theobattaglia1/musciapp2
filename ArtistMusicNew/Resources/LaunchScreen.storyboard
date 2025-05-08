@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard"
+          version="3.0" toolsVersion="24126" targetRuntime="iOS.CocoaTouch"
+          propertyAccessControl="none" useAutolayout="YES" launchScreen="YES">
+    <scenes>
+        <!-- Launch Screen -->
+        <scene sceneID="launch">
+            <objects>
+                <viewController id="vc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view">
+                        <rect key="frame" x="0" y="0" width="414" height="896"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+            </objects>
+        </scene>
+    </scenes>
+</document>

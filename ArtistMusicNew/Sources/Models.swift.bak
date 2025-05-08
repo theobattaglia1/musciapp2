@@ -1,0 +1,22 @@
+import Foundation
+
+struct Artist: Identifiable, Codable {
+    var id: UUID
+    var name: String
+    var headerImageData: Data?
+    var avatarImageData: Data?
+}
+
+struct Playlist: Identifiable, Codable {
+    var id: UUID
+    var name: String
+    var artistID: UUID
+    var songIDs: [UUID] = []
+}
+
+struct Song: Identifiable, Codable {
+    var id: UUID
+    var title: String
+    var artistID: UUID
+    var audioURL: URL
+}

@@ -1,0 +1,45 @@
+import Foundation
+import Combine
+
+@MainActor
+public final class ArtistStore: ObservableObject {
+
+    // persisted state
+    @Published public private(set) var artists:   [Artist]   = []
+    @Published public private(set) var playlists: [Playlist] = []
+    @Published public private(set) var songs:     [Song]     = []
+
+    // MARK: - Artist CRUD
+    public func createArtist(name: String) {
+        artists.append(Artist(name: name))
+    }
+
+    // MARK: - Playlist CRUD
+    public func createPlaylist(title: String, songIDs: [UUID] = []) {
+        playlists.append(Playlist(title: title, songIDs: songIDs))
+    }
+
+    // MARK: - Song CRUD
+    public func importSong(title: String,
+                           artistID: UUID,
+                           fileURL: URL,
+                           playlistIDs: [UUID] = []) {
+        songs.append(
+            Song(title: title,
+                 artistID: artistID,
+                 playlistIDs: playlistIDs,
+                 fileURL: fileURL)
+        )
+    }
+
+    // MARK: - Queries
+    public func songs(for playlistID: UUID) -> [Song] {
+        guard let playlist = playlists.first(where: { $0.id == playlistID })
+        else { return [] }
+        return songs.filter { playlist.songIDs.contains($0.id) }
+    }
+
+    public func playlists(containing songID: UUID) -> [Playlist] {
+        playlists.filter { $0.songIDs.contains(songID) }
+    }
+}
